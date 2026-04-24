@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI猫导航</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<style>
+body{
+  background: linear-gradient(135deg,#e0e7ff,#f8fafc);
+}
+.glass{
+  background: rgba(255,255,255,0.7);
+  backdrop-filter: blur(20px);
+  border-radius:20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+.card:hover{
+  transform: translateY(-6px);
+  transition: 0.3s;
+}
+</style>
+</head>
+
+<body class="p-6 font-sans">
+
+<div class="grid grid-cols-[240px_1fr] gap-6">
+
+<!-- 左 -->
+<div class="glass p-5 flex flex-col justify-between">
+  <div>
+    <h1 class="text-xl font-bold text-indigo-600 mb-6">🐱 AI猫导航</h1>
+    <div class="space-y-3">
+      <div>🏠 首页</div>
+      <div>🤖 AI工具</div>
+      <div>📚 分类</div>
+    </div>
+  </div>
+  <div class="glass p-3 text-sm">
+    😺 我可以帮你找AI工具
+  </div>
+</div>
+
+<!-- 主 -->
+<div class="space-y-6">
+
+<div class="glass p-6">
+  <h1 class="text-3xl font-bold">
+    发现最佳 <span class="text-indigo-500">AI工具</span>
+  </h1>
+  <input id="search"
+    class="mt-4 w-full p-4 rounded-xl shadow-inner"
+    placeholder="搜索 AI 工具..." />
+</div>
+
+<div class="grid grid-cols-3 gap-6">
+
+<div class="col-span-2 glass p-5">
+  <h2 class="mb-4 font-bold">🔥 热门工具</h2>
+  <div id="tools" class="grid grid-cols-2 gap-4"></div>
+</div>
+
+<div class="glass p-5">
+  <h3>天气</h3>
+  <div id="weather" class="text-3xl"></div>
+</div>
+
+<div class="glass p-5 text-center">
+  <h3>时钟</h3>
+  <div id="clock" class="text-3xl"></div>
+</div>
+
+</div>
+</div>
+</div>
+
+<script>
+const tools = [
+  {name:"ChatGPT",url:"https://chat.openai.com"},
+  {name:"Claude",url:"https://claude.ai"},
+  {name:"Midjourney",url:"https://midjourney.com"},
+  {name:"Runway",url:"https://runwayml.com"}
+];
+
+function render(list){
+  tools.innerHTML="";
+  list.forEach(t=>{
+    tools.innerHTML += `<a href="${t.url}" target="_blank" class="glass p-3 card">${t.name}</a>`;
+  });
+}
+render(tools);
+
+search.oninput = e=>{
+  const v=e.target.value.toLowerCase();
+  render(tools.filter(t=>t.name.toLowerCase().includes(v)));
+};
+
+setInterval(()=>{
+  clock.innerText=new Date().toLocaleTimeString();
+},1000);
+
+fetch("https://wttr.in/?format=j1")
+.then(r=>r.json())
+.then(d=>{
+  weather.innerText=d.current_condition[0].temp_C+"°";
+});
+</script>
+
+</body>
+</html>
