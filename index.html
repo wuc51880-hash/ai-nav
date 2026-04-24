@@ -9,90 +9,130 @@
 
 <style>
 body{
-background: linear-gradient(135deg,#e0e7ff,#f8fafc);
+  background: linear-gradient(135deg,#dbeafe,#f1f5f9);
+  font-family: sans-serif;
 }
 .glass{
-background: rgba(255,255,255,0.7);
-backdrop-filter: blur(20px);
-border-radius:20px;
-box-shadow:0 10px 30px rgba(0,0,0,0.1);
+  background: rgba(255,255,255,0.6);
+  backdrop-filter: blur(20px);
+  border-radius:20px;
+  box-shadow:0 10px 30px rgba(0,0,0,0.08);
+}
+.card{
+  transition: all .3s;
 }
 .card:hover{
-transform: translateY(-6px);
-transition:0.3s;
+  transform: translateY(-8px) scale(1.02);
+  box-shadow:0 20px 50px rgba(0,0,0,0.15);
 }
 </style>
 </head>
 
-<body class="p-6 font-sans">
+<body class="p-6">
 
-<div class="grid grid-cols-[260px_1fr] gap-6">
+<div class="grid grid-cols-4 gap-6">
 
-<!-- 左侧 -->
-<div class="glass p-5 space-y-6">
-<h1 class="text-xl font-bold text-indigo-600">🐱 AI猫导航</h1>
-
-<div class="space-y-3">
-<div>🏠 首页</div>
-<div>🤖 AI工具</div>
-<div>📚 分类</div>
-</div>
-
-<div class="glass p-3 text-sm">
-🐱 我可以帮你找AI工具
-</div>
-</div>
-
-<!-- 主体 -->
-<div class="space-y-6">
-
+<!-- 左侧栏 -->
 <div class="glass p-6">
-<h2 class="text-3xl font-bold mb-4">
-发现最佳 <span class="text-indigo-500">AI工具</span>
-</h2>
-<input class="w-full p-4 rounded-xl bg-green-200/50" placeholder="搜索 AI 工具...">
+  <h2 class="text-xl font-bold mb-6">🐱 AI猫导航</h2>
+
+  <div class="space-y-4 text-gray-700">
+    <div>🏠 首页</div>
+    <div>🤖 AI工具</div>
+    <div>📊 分类</div>
+  </div>
+
+  <div class="mt-10 p-4 bg-white/50 rounded-xl text-sm">
+    🐱 帮你快速找到AI工具
+  </div>
 </div>
 
-<!-- 工具 -->
+<!-- 主区域 -->
+<div class="col-span-3 space-y-6">
+
+<!-- 标题 -->
+<div class="glass p-6">
+  <h1 class="text-3xl font-bold">
+    发现最佳 <span class="text-blue-500">AI工具</span>
+  </h1>
+
+  <input id="search"
+    class="mt-4 w-full p-4 rounded-xl bg-green-100 outline-none"
+    placeholder="搜索 AI 工具...">
+</div>
+
+<!-- 工具区 -->
+<div class="glass p-6">
+  <h2 class="mb-4 text-lg font-semibold">🔥 热门工具</h2>
+
+  <div id="tools" class="grid grid-cols-2 gap-4">
+
+    <a href="https://chat.openai.com" target="_blank" class="card glass p-4 flex items-center gap-3">
+      🤖 ChatGPT
+    </a>
+
+    <a href="https://claude.ai" target="_blank" class="card glass p-4 flex items-center gap-3">
+      🧠 Claude
+    </a>
+
+    <a href="https://midjourney.com" target="_blank" class="card glass p-4 flex items-center gap-3">
+      🎨 Midjourney
+    </a>
+
+    <a href="https://runwayml.com" target="_blank" class="card glass p-4 flex items-center gap-3">
+      🎬 Runway
+    </a>
+
+    <a href="https://notion.so" target="_blank" class="card glass p-4 flex items-center gap-3">
+      📝 Notion AI
+    </a>
+
+    <a href="https://perplexity.ai" target="_blank" class="card glass p-4 flex items-center gap-3">
+      🔎 Perplexity
+    </a>
+
+  </div>
+</div>
+
+<!-- 下方信息 -->
 <div class="grid grid-cols-2 gap-6">
 
-<div class="glass p-5">
-🔥 热门工具
+  <div class="glass p-6">
+    天气
+    <h1 class="text-3xl mt-2">14°</h1>
+  </div>
 
-<div class="grid grid-cols-2 gap-4 mt-4">
+  <div class="glass p-6 text-center text-3xl">
+    时钟
+    <div id="clock"></div>
+  </div>
 
-<div class="glass p-3 card">ChatGPT</div>
-<div class="glass p-3 card">Claude</div>
-<div class="glass p-3 card">Midjourney</div>
-<div class="glass p-3 card">Runway</div>
-<div class="glass p-3 card">Notion AI</div>
-<div class="glass p-3 card">Perplexity</div>
-
-</div>
-</div>
-
-<div class="glass p-5">
-天气
-<h1 class="text-3xl mt-2">14°</h1>
-</div>
-
-</div>
-
-<div class="glass p-6 text-center text-3xl">
-时钟
-<div id="clock"></div>
 </div>
 
 </div>
 </div>
 
 <script>
+// 时钟
 function updateClock(){
-const now=new Date();
-document.getElementById('clock').innerText=
-now.toLocaleTimeString();
+  document.getElementById("clock").innerText =
+    new Date().toLocaleTimeString();
 }
 setInterval(updateClock,1000);
+
+// 搜索
+const search = document.getElementById("search");
+const tools = document.getElementById("tools").children;
+
+search.addEventListener("input", ()=>{
+  const val = search.value.toLowerCase();
+  for(let item of tools){
+    item.style.display =
+      item.innerText.toLowerCase().includes(val)
+      ? "flex"
+      : "none";
+  }
+});
 </script>
 
 </body>
