@@ -3,14 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AI导航</title>
+<title>AI猫导航</title>
 
 <script src="https://cdn.tailwindcss.com"></script>
 
 <style>
 body{
-  background: linear-gradient(135deg,#dbeafe,#f1f5f9);
-  font-family: sans-serif;
+  background: linear-gradient(135deg,#e0e7ff,#f1f5f9);
+  font-family: "Segoe UI", sans-serif;
 }
 .glass{
   background: rgba(255,255,255,0.6);
@@ -19,93 +19,151 @@ body{
   box-shadow:0 10px 30px rgba(0,0,0,0.08);
 }
 .card{
-  transition: all .3s;
+  transition:.3s;
 }
 .card:hover{
-  transform: translateY(-8px) scale(1.02);
-  box-shadow:0 20px 50px rgba(0,0,0,0.15);
+  transform:translateY(-6px);
+  box-shadow:0 20px 40px rgba(0,0,0,0.12);
 }
 </style>
 </head>
 
 <body class="p-6">
 
-<div class="grid grid-cols-4 gap-6">
+<div class="grid grid-cols-5 gap-6">
 
-<!-- 左侧栏 -->
-<div class="glass p-6">
-  <h2 class="text-xl font-bold mb-6">🐱 AI猫导航</h2>
+<!-- 左侧导航 -->
+<div class="glass p-6 space-y-6">
+  <h2 class="text-xl font-bold">🐱 AI猫导航</h2>
 
   <div class="space-y-4 text-gray-700">
-    <div>🏠 首页</div>
+    <div class="bg-blue-100 p-3 rounded-xl">🏠 首页</div>
     <div>🤖 AI工具</div>
     <div>📊 分类</div>
+    <div>⭐ 榜单</div>
   </div>
 
-  <div class="mt-10 p-4 bg-white/50 rounded-xl text-sm">
-    🐱 帮你快速找到AI工具
+  <div class="mt-10 p-4 bg-white/60 rounded-xl text-sm">
+    Hi~ 我是导航喵 ✨<br>
+    帮你找到最强AI工具
   </div>
 </div>
 
-<!-- 主区域 -->
-<div class="col-span-3 space-y-6">
+<!-- 主内容 -->
+<div class="col-span-4 space-y-6">
 
 <!-- 标题 -->
-<div class="glass p-6">
-  <h1 class="text-3xl font-bold">
-    发现最佳 <span class="text-blue-500">AI工具</span>
+<div class="text-center">
+  <h1 class="text-4xl font-bold">
+    发现最佳 <span class="text-blue-500">AI 工具</span>
   </h1>
+  <p class="text-gray-500 mt-2">精选全球优质AI工具，提升效率</p>
 
-  <input id="search"
-    class="mt-4 w-full p-4 rounded-xl bg-green-100 outline-none"
-    placeholder="搜索 AI 工具...">
-</div>
-
-<!-- 工具区 -->
-<div class="glass p-6">
-  <h2 class="mb-4 text-lg font-semibold">🔥 热门工具</h2>
-
-  <div id="tools" class="grid grid-cols-2 gap-4">
-
-    <a href="https://chat.openai.com" target="_blank" class="card glass p-4 flex items-center gap-3">
-      🤖 ChatGPT
-    </a>
-
-    <a href="https://claude.ai" target="_blank" class="card glass p-4 flex items-center gap-3">
-      🧠 Claude
-    </a>
-
-    <a href="https://midjourney.com" target="_blank" class="card glass p-4 flex items-center gap-3">
-      🎨 Midjourney
-    </a>
-
-    <a href="https://runwayml.com" target="_blank" class="card glass p-4 flex items-center gap-3">
-      🎬 Runway
-    </a>
-
-    <a href="https://notion.so" target="_blank" class="card glass p-4 flex items-center gap-3">
-      📝 Notion AI
-    </a>
-
-    <a href="https://perplexity.ai" target="_blank" class="card glass p-4 flex items-center gap-3">
-      🔎 Perplexity
-    </a>
-
+  <!-- 搜索 -->
+  <div class="mt-6 flex justify-center">
+    <input id="search"
+      class="w-2/3 p-4 rounded-full bg-white shadow outline-none"
+      placeholder="搜索AI工具，例如：ChatGPT...">
   </div>
 </div>
 
-<!-- 下方信息 -->
-<div class="grid grid-cols-2 gap-6">
+<!-- 分类 -->
+<div class="glass p-4 flex justify-between text-center">
+  <div>✍️ 写作</div>
+  <div>🎨 绘图</div>
+  <div>🎬 视频</div>
+  <div>💻 编程</div>
+  <div>⚡ 效率</div>
+  <div>🎓 学习</div>
+  <div>📦 更多</div>
+</div>
 
-  <div class="glass p-6">
-    天气
-    <h1 class="text-3xl mt-2">14°</h1>
+<!-- 热门工具 -->
+<div>
+  <h2 class="mb-4 text-lg font-bold">🔥 热门推荐</h2>
+
+  <div id="tools" class="grid grid-cols-3 gap-6">
+
+    <a href="https://chat.openai.com" target="_blank"
+      class="card glass p-5 text-center">
+      <div class="text-3xl">🤖</div>
+      <h3 class="mt-2 font-bold">ChatGPT</h3>
+      <p class="text-sm text-gray-500">AI对话助手</p>
+    </a>
+
+    <a href="https://midjourney.com" target="_blank"
+      class="card glass p-5 text-center">
+      <div class="text-3xl">🎨</div>
+      <h3 class="mt-2 font-bold">Midjourney</h3>
+      <p class="text-sm text-gray-500">AI绘画工具</p>
+    </a>
+
+    <a href="https://notion.so" target="_blank"
+      class="card glass p-5 text-center">
+      <div class="text-3xl">📝</div>
+      <h3 class="mt-2 font-bold">Notion AI</h3>
+      <p class="text-sm text-gray-500">写作助手</p>
+    </a>
+
+    <a href="https://canva.com" target="_blank"
+      class="card glass p-5 text-center">
+      <div class="text-3xl">🎨</div>
+      <h3 class="mt-2 font-bold">Canva AI</h3>
+      <p class="text-sm text-gray-500">设计工具</p>
+    </a>
+
+    <a href="https://runwayml.com" target="_blank"
+      class="card glass p-5 text-center">
+      <div class="text-3xl">🎬</div>
+      <h3 class="mt-2 font-bold">Runway</h3>
+      <p class="text-sm text-gray-500">AI视频制作</p>
+    </a>
+
+    <a href="https://github.com/features/copilot" target="_blank"
+      class="card glass p-5 text-center">
+      <div class="text-3xl">💻</div>
+      <h3 class="mt-2 font-bold">Copilot</h3>
+      <p class="text-sm text-gray-500">编程助手</p>
+    </a>
+
+  </div>
+</div>
+
+<!-- 下方 -->
+<div class="grid grid-cols-3 gap-6">
+
+<!-- 新工具 -->
+<div class="glass p-5">
+  <h3 class="font-bold mb-3">🆕 新工具</h3>
+  <ul class="text-sm space-y-2 text-gray-600">
+    <li>Perplexity AI</li>
+    <li>Claude 3</li>
+    <li>Tome</li>
+  </ul>
+</div>
+
+<!-- 榜单 -->
+<div class="glass p-5">
+  <h3 class="font-bold mb-3">🏆 工具榜单</h3>
+  <ul class="text-sm space-y-2 text-gray-600">
+    <li>1. ChatGPT</li>
+    <li>2. Midjourney</li>
+    <li>3. Notion AI</li>
+  </ul>
+</div>
+
+<!-- 右侧 -->
+<div class="space-y-6">
+  <div class="glass p-5 text-center">
+    🌤 天气
+    <h1 class="text-3xl mt-2">26°</h1>
   </div>
 
-  <div class="glass p-6 text-center text-3xl">
-    时钟
-    <div id="clock"></div>
+  <div class="glass p-5 text-center">
+    ⏰ 时钟
+    <div id="clock" class="text-2xl mt-2"></div>
   </div>
+</div>
 
 </div>
 
@@ -129,7 +187,7 @@ search.addEventListener("input", ()=>{
   for(let item of tools){
     item.style.display =
       item.innerText.toLowerCase().includes(val)
-      ? "flex"
+      ? "block"
       : "none";
   }
 });
