@@ -5,184 +5,233 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AI猫导航</title>
 
-<script src="https://cdn.tailwindcss.com"></script>
-
 <style>
+/* ===== 全局 ===== */
 body{
-    background:#e6ecf5;
-    font-family: "Segoe UI", sans-serif;
+  margin:0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background:#e6ecf5;
+  display:flex;
 }
 
-/* 拟态卡片 */
-.neo{
-    background:#e6ecf5;
-    border-radius:20px;
-    box-shadow: 8px 8px 16px #c5ccd6,
-                -8px -8px 16px #ffffff;
+/* ===== 拟态基础 ===== */
+.neu{
+  background:#e6ecf5;
+  border-radius:20px;
+  box-shadow: 8px 8px 16px #c8d0e0,
+              -8px -8px 16px #ffffff;
 }
 
-/* 按钮拟态 */
-.neo-btn{
-    padding:10px 20px;
-    border-radius:15px;
-    background:#e6ecf5;
-    box-shadow: 5px 5px 10px #c5ccd6,
-                -5px -5px 10px #ffffff;
-    transition:0.2s;
-}
-.neo-btn:hover{
-    transform:translateY(-3px);
+.neu-inset{
+  background:#e6ecf5;
+  border-radius:20px;
+  box-shadow: inset 6px 6px 12px #c8d0e0,
+              inset -6px -6px 12px #ffffff;
 }
 
-/* 卡片hover */
+/* ===== 左侧栏 ===== */
+.sidebar{
+  width:240px;
+  padding:20px;
+}
+
+.logo{
+  font-size:22px;
+  font-weight:bold;
+  margin-bottom:30px;
+}
+
+.menu{
+  padding:15px;
+  margin-bottom:15px;
+  cursor:pointer;
+  transition:0.3s;
+}
+.menu:hover{
+  transform:translateY(-2px);
+}
+
+/* ===== 主体 ===== */
+.main{
+  flex:1;
+  padding:30px;
+}
+
+/* ===== 标题 ===== */
+.title{
+  font-size:32px;
+  font-weight:bold;
+  margin-bottom:20px;
+}
+
+/* ===== 搜索 ===== */
+.search{
+  padding:15px;
+  margin-bottom:25px;
+}
+
+/* ===== 分类按钮 ===== */
+.categories{
+  display:flex;
+  gap:15px;
+  margin-bottom:25px;
+}
+
+.cat-btn{
+  padding:12px 20px;
+  cursor:pointer;
+  transition:0.2s;
+}
+.cat-btn:hover{
+  transform:translateY(-3px);
+}
+
+/* ===== 卡片 ===== */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:20px;
+}
+
+.card{
+  padding:20px;
+  text-align:center;
+  transition:0.3s;
+}
 .card:hover{
-    transform:translateY(-6px);
-    transition:0.3s;
+  transform:translateY(-5px);
 }
 
-/* 小猫动画 */
+/* ===== 小猫 ===== */
 .cat{
-    transition:0.3s;
-}
-.cat:hover{
-    transform:scale(1.1);
+  width:80px;
+  margin-bottom:10px;
+  transition:0.3s;
 }
 
-/* 漂浮 */
-.float{
-    animation: float 4s ease-in-out infinite;
+.cat:hover{
+  transform:scale(1.1) rotate(-5deg);
 }
+
+/* ===== 装饰猫 ===== */
+.float-cat{
+  position:fixed;
+  width:100px;
+  animation:float 3s ease-in-out infinite;
+}
+
+.cat-left{
+  left:20px;
+  bottom:20px;
+}
+
+.cat-right{
+  right:30px;
+  bottom:30px;
+}
+
 @keyframes float{
-    0%{transform:translateY(0)}
-    50%{transform:translateY(-8px)}
-    100%{transform:translateY(0)}
+  0%{transform:translateY(0)}
+  50%{transform:translateY(-10px)}
+  100%{transform:translateY(0)}
 }
+
+/* ===== 时钟 ===== */
+.clock{
+  margin-top:30px;
+  padding:20px;
+  text-align:center;
+  font-size:24px;
+}
+
 </style>
 </head>
 
-<body class="p-6">
+<body>
 
-<div class="flex gap-6">
+<!-- 左侧 -->
+<div class="sidebar">
+  <div class="logo">🐱 AI猫导航</div>
 
-    <!-- 左侧 -->
-    <div class="w-64 p-5 neo flex flex-col gap-4">
-
-        <h2 class="text-xl font-bold">🐱 AI猫导航</h2>
-
-        <div class="neo-btn">🏠 首页</div>
-        <div class="neo-btn">🤖 AI工具</div>
-        <div class="neo-btn">📂 分类</div>
-
-        <div class="neo p-4 mt-6 text-sm">
-            Hi~ 我是导航猫 🐾
-        </div>
-
-        <!-- 小猫 -->
-        <img src="images/cat_wave.png" class="cat float w-20 mt-6">
-    </div>
-
-    <!-- 右侧 -->
-    <div class="flex-1 flex flex-col gap-6">
-
-        <!-- 标题 -->
-        <div class="neo p-6 text-center relative">
-            <h1 class="text-3xl font-bold">
-                发现最佳 <span class="text-blue-500">AI工具</span>
-            </h1>
-
-            <!-- 探头猫 -->
-            <img src="images/cat_peek.png"
-                 class="cat w-24 absolute left-6 bottom-0">
-        </div>
-
-        <!-- 搜索 -->
-        <div class="neo p-4 flex items-center gap-3">
-            <input type="text" placeholder="搜索AI工具..."
-                   class="flex-1 p-3 rounded-xl outline-none bg-transparent">
-            <button class="neo-btn">🔍</button>
-        </div>
-
-        <!-- 分类 -->
-        <div class="neo p-4 flex justify-around text-sm">
-            <div>✍️ 写作</div>
-            <div>🎨 绘图</div>
-            <div>🎬 视频</div>
-            <div>💻 编程</div>
-            <div>⚡ 效率</div>
-            <div>🎓 学习</div>
-        </div>
-
-        <!-- 热门工具 -->
-        <div class="grid grid-cols-3 gap-6">
-
-            <div class="neo p-6 card text-center relative">
-                ChatGPT
-                <img src="images/cat_work.png"
-                     class="cat w-16 absolute bottom-2 right-2">
-            </div>
-
-            <div class="neo p-6 card text-center">
-                Midjourney
-            </div>
-
-            <div class="neo p-6 card text-center">
-                Notion AI
-            </div>
-
-        </div>
-
-        <!-- 底部 -->
-        <div class="grid grid-cols-3 gap-6">
-
-            <!-- 新工具 -->
-            <div class="neo p-5">
-                <h3>🆕 新工具</h3>
-                <p class="text-sm mt-2">Perplexity AI</p>
-                <p class="text-sm">Claude</p>
-            </div>
-
-            <!-- 排行 -->
-            <div class="neo p-5">
-                <h3>🏆 排行榜</h3>
-                <p class="text-sm mt-2">1. ChatGPT</p>
-                <p class="text-sm">2. Midjourney</p>
-            </div>
-
-            <!-- 天气 -->
-            <div class="neo p-5 text-center relative">
-                🌤️ 26°
-
-                <!-- 圣诞猫 -->
-                <img src="images/cat_christmas.png"
-                     class="cat w-16 absolute bottom-2 right-2">
-            </div>
-
-        </div>
-
-        <!-- 底部装饰 -->
-        <div class="flex justify-between items-center">
-
-            <!-- 趴着 -->
-            <img src="images/cat_sleep.png" class="cat w-24">
-
-            <!-- 打架 -->
-            <img src="images/cat_fight.png" class="cat w-32">
-
-        </div>
-
-    </div>
+  <div class="menu neu">🏠 首页</div>
+  <div class="menu neu">🤖 AI工具</div>
+  <div class="menu neu">📂 分类</div>
 </div>
 
-<!-- 时钟 -->
-<div class="neo p-6 text-center text-2xl mt-6">
-    <div id="clock"></div>
+<!-- 主体 -->
+<div class="main">
+
+  <div class="title">发现最佳 AI 工具</div>
+
+  <div class="search neu-inset">
+    🔍 搜索 AI 工具...
+  </div>
+
+  <!-- 分类 -->
+  <div class="categories">
+    <div class="cat-btn neu">✍ 写作</div>
+    <div class="cat-btn neu">🎨 绘图</div>
+    <div class="cat-btn neu">💻 编程</div>
+    <div class="cat-btn neu">⚡ 效率</div>
+  </div>
+
+  <!-- 卡片 -->
+  <div class="grid">
+
+    <div class="card neu">
+      <img src="images/cat_wave.png" class="cat">
+      <h3>ChatGPT</h3>
+      <p>AI对话助手</p>
+    </div>
+
+    <div class="card neu">
+      <img src="images/cat_peek.png" class="cat">
+      <h3>Midjourney</h3>
+      <p>AI绘画工具</p>
+    </div>
+
+    <div class="card neu">
+      <img src="images/cat_work.png" class="cat">
+      <h3>Notion AI</h3>
+      <p>写作助手</p>
+    </div>
+
+    <div class="card neu">
+      <img src="images/cat_sleep.png" class="cat">
+      <h3>Canva AI</h3>
+      <p>设计工具</p>
+    </div>
+
+    <div class="card neu">
+      <img src="images/cat_fight.png" class="cat">
+      <h3>Runway</h3>
+      <p>视频生成</p>
+    </div>
+
+    <div class="card neu">
+      <img src="images/cat_christmas.png" class="cat">
+      <h3>Copilot</h3>
+      <p>编程助手</p>
+    </div>
+
+  </div>
+
+  <!-- 时钟 -->
+  <div class="clock neu">
+    ⏰ <span id="clock"></span>
+  </div>
+
 </div>
 
+<!-- 装饰猫 -->
+<img src="images/cat_peek.png" class="float-cat cat-left">
+<img src="images/cat_christmas.png" class="float-cat cat-right">
+
+<!-- JS -->
 <script>
 function updateClock(){
-    const now = new Date();
-    document.getElementById("clock").innerText =
-        now.toLocaleTimeString();
+  const now = new Date();
+  document.getElementById('clock').innerText = now.toLocaleTimeString();
 }
 setInterval(updateClock,1000);
 updateClock();
