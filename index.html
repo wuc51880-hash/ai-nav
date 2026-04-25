@@ -9,203 +9,180 @@
 
 <style>
 body{
-  background:#EEF2F7;
-  font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
+    background:#e6ecf5;
+    font-family: "Segoe UI", sans-serif;
 }
 
 /* 拟态卡片 */
 .neo{
-  background:#EEF2F7;
-  border-radius:20px;
-  box-shadow:
-    8px 8px 16px #d1d9e6,
-    -8px -8px 16px #ffffff;
-  transition:all .2s;
+    background:#e6ecf5;
+    border-radius:20px;
+    box-shadow: 8px 8px 16px #c5ccd6,
+                -8px -8px 16px #ffffff;
 }
 
-.neo:hover{
-  transform:translateY(-4px);
-  box-shadow:
-    12px 12px 20px #c8d0e0,
-    -12px -12px 20px #ffffff;
+/* 按钮拟态 */
+.neo-btn{
+    padding:10px 20px;
+    border-radius:15px;
+    background:#e6ecf5;
+    box-shadow: 5px 5px 10px #c5ccd6,
+                -5px -5px 10px #ffffff;
+    transition:0.2s;
+}
+.neo-btn:hover{
+    transform:translateY(-3px);
 }
 
-/* 按下 */
-.neo:active{
-  box-shadow:
-    inset 6px 6px 10px #c8d0e0,
-    inset -6px -6px 10px #ffffff;
+/* 卡片hover */
+.card:hover{
+    transform:translateY(-6px);
+    transition:0.3s;
 }
 
-/* 输入框 */
-.neo-input{
-  background:#EEF2F7;
-  border-radius:30px;
-  padding:15px 20px;
-  box-shadow:
-    inset 4px 4px 8px #d1d9e6,
-    inset -4px -4px 8px #ffffff;
-  outline:none;
-  width:100%;
-}
-
-/* 圆形按钮 */
-.neo-circle{
-  width:70px;
-  height:70px;
-  border-radius:50%;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-}
-
-/* 小猫装饰 */
+/* 小猫动画 */
 .cat{
-  position:absolute;
-  width:120px;
+    transition:0.3s;
+}
+.cat:hover{
+    transform:scale(1.1);
+}
+
+/* 漂浮 */
+.float{
+    animation: float 4s ease-in-out infinite;
+}
+@keyframes float{
+    0%{transform:translateY(0)}
+    50%{transform:translateY(-8px)}
+    100%{transform:translateY(0)}
 }
 </style>
 </head>
 
-<body>
+<body class="p-6">
 
-<div class="flex min-h-screen">
+<div class="flex gap-6">
 
-<!-- 左侧 -->
-<div class="w-64 p-5 space-y-5">
+    <!-- 左侧 -->
+    <div class="w-64 p-5 neo flex flex-col gap-4">
 
-<div class="neo p-5">
-  <h2 class="text-xl font-bold">🐱 AI猫导航</h2>
-  <p class="text-gray-500 text-sm mt-1">发现最好的AI工具</p>
+        <h2 class="text-xl font-bold">🐱 AI猫导航</h2>
+
+        <div class="neo-btn">🏠 首页</div>
+        <div class="neo-btn">🤖 AI工具</div>
+        <div class="neo-btn">📂 分类</div>
+
+        <div class="neo p-4 mt-6 text-sm">
+            Hi~ 我是导航猫 🐾
+        </div>
+
+        <!-- 小猫 -->
+        <img src="images/cat_wave.png" class="cat float w-20 mt-6">
+    </div>
+
+    <!-- 右侧 -->
+    <div class="flex-1 flex flex-col gap-6">
+
+        <!-- 标题 -->
+        <div class="neo p-6 text-center relative">
+            <h1 class="text-3xl font-bold">
+                发现最佳 <span class="text-blue-500">AI工具</span>
+            </h1>
+
+            <!-- 探头猫 -->
+            <img src="images/cat_peek.png"
+                 class="cat w-24 absolute left-6 bottom-0">
+        </div>
+
+        <!-- 搜索 -->
+        <div class="neo p-4 flex items-center gap-3">
+            <input type="text" placeholder="搜索AI工具..."
+                   class="flex-1 p-3 rounded-xl outline-none bg-transparent">
+            <button class="neo-btn">🔍</button>
+        </div>
+
+        <!-- 分类 -->
+        <div class="neo p-4 flex justify-around text-sm">
+            <div>✍️ 写作</div>
+            <div>🎨 绘图</div>
+            <div>🎬 视频</div>
+            <div>💻 编程</div>
+            <div>⚡ 效率</div>
+            <div>🎓 学习</div>
+        </div>
+
+        <!-- 热门工具 -->
+        <div class="grid grid-cols-3 gap-6">
+
+            <div class="neo p-6 card text-center relative">
+                ChatGPT
+                <img src="images/cat_work.png"
+                     class="cat w-16 absolute bottom-2 right-2">
+            </div>
+
+            <div class="neo p-6 card text-center">
+                Midjourney
+            </div>
+
+            <div class="neo p-6 card text-center">
+                Notion AI
+            </div>
+
+        </div>
+
+        <!-- 底部 -->
+        <div class="grid grid-cols-3 gap-6">
+
+            <!-- 新工具 -->
+            <div class="neo p-5">
+                <h3>🆕 新工具</h3>
+                <p class="text-sm mt-2">Perplexity AI</p>
+                <p class="text-sm">Claude</p>
+            </div>
+
+            <!-- 排行 -->
+            <div class="neo p-5">
+                <h3>🏆 排行榜</h3>
+                <p class="text-sm mt-2">1. ChatGPT</p>
+                <p class="text-sm">2. Midjourney</p>
+            </div>
+
+            <!-- 天气 -->
+            <div class="neo p-5 text-center relative">
+                🌤️ 26°
+
+                <!-- 圣诞猫 -->
+                <img src="images/cat_christmas.png"
+                     class="cat w-16 absolute bottom-2 right-2">
+            </div>
+
+        </div>
+
+        <!-- 底部装饰 -->
+        <div class="flex justify-between items-center">
+
+            <!-- 趴着 -->
+            <img src="images/cat_sleep.png" class="cat w-24">
+
+            <!-- 打架 -->
+            <img src="images/cat_fight.png" class="cat w-32">
+
+        </div>
+
+    </div>
 </div>
 
-<div class="space-y-3">
-  <div class="neo p-3">🏠 首页</div>
-  <div class="neo p-3">🤖 AI工具</div>
-  <div class="neo p-3">📂 分类</div>
-  <div class="neo p-3">⭐ 榜单</div>
-</div>
-
-<div class="neo p-4 text-sm text-gray-600">
-  Hi~ 我是导航猫 ✨<br>
-  帮你找到最好用AI工具
-</div>
-
-</div>
-
-<!-- 主内容 -->
-<div class="flex-1 p-10 relative">
-
-<!-- 标题 -->
-<h1 class="text-3xl font-bold text-center">
-发现最佳 <span class="text-blue-500">AI工具</span>
-</h1>
-<p class="text-center text-gray-500 mt-2">
-精选全球优质AI工具，提升效率
-</p>
-
-<!-- 搜索 -->
-<div class="max-w-2xl mx-auto mt-6 flex gap-3">
-<input class="neo-input" placeholder="搜索AI工具，如 ChatGPT...">
-<button class="neo px-6">🔍</button>
-</div>
-
-<!-- 分类 -->
-<div class="flex justify-center gap-6 mt-8 flex-wrap">
-<div class="neo neo-circle">✍️</div>
-<div class="neo neo-circle">🎨</div>
-<div class="neo neo-circle">🎬</div>
-<div class="neo neo-circle">💻</div>
-<div class="neo neo-circle">⚡</div>
-<div class="neo neo-circle">🎓</div>
-</div>
-
-<!-- 热门 -->
-<h2 class="mt-10 mb-4 font-bold text-lg">🔥 热门推荐</h2>
-
-<div class="grid grid-cols-3 gap-6">
-
-<div class="neo p-5">
-<h3 class="font-bold">ChatGPT</h3>
-<p class="text-gray-500 text-sm">AI对话助手</p>
-</div>
-
-<div class="neo p-5">
-<h3 class="font-bold">Midjourney</h3>
-<p class="text-gray-500 text-sm">AI绘画工具</p>
-</div>
-
-<div class="neo p-5">
-<h3 class="font-bold">Notion AI</h3>
-<p class="text-gray-500 text-sm">写作助手</p>
-</div>
-
-<div class="neo p-5">
-<h3 class="font-bold">Canva AI</h3>
-<p class="text-gray-500 text-sm">设计工具</p>
-</div>
-
-<div class="neo p-5">
-<h3 class="font-bold">Runway</h3>
-<p class="text-gray-500 text-sm">视频制作</p>
-</div>
-
-<div class="neo p-5">
-<h3 class="font-bold">Copilot</h3>
-<p class="text-gray-500 text-sm">编程助手</p>
-</div>
-
-</div>
-
-<!-- 下方区域 -->
-<div class="grid grid-cols-3 gap-6 mt-10">
-
-<!-- 新工具 -->
-<div class="neo p-5">
-<h3 class="font-bold mb-2">🆕 新工具</h3>
-<p>Perplexity AI</p>
-<p>Claude</p>
-<p>Tome</p>
-<p>Luma AI</p>
-</div>
-
-<!-- 排行榜 -->
-<div class="neo p-5">
-<h3 class="font-bold mb-2">🏆 工具榜单</h3>
-<p>1. ChatGPT</p>
-<p>2. Midjourney</p>
-<p>3. Notion AI</p>
-</div>
-
-<!-- 天气 + 时间 -->
-<div class="space-y-6">
-
-<div class="neo p-5">
-天气
-<h1 class="text-2xl mt-2">26°</h1>
-</div>
-
-<div class="neo p-5 text-center">
-时钟
-<div id="clock" class="text-2xl mt-2"></div>
-</div>
-
-</div>
-
-</div>
-
-<!-- 小猫装饰（替换成你的图） -->
-<img src="cat1.png" class="cat bottom-0 left-10">
-<img src="cat2.png" class="cat top-10 right-10">
-
-</div>
-
+<!-- 时钟 -->
+<div class="neo p-6 text-center text-2xl mt-6">
+    <div id="clock"></div>
 </div>
 
 <script>
 function updateClock(){
-  document.getElementById('clock').innerText =
-    new Date().toLocaleTimeString();
+    const now = new Date();
+    document.getElementById("clock").innerText =
+        now.toLocaleTimeString();
 }
 setInterval(updateClock,1000);
 updateClock();
