@@ -2,56 +2,48 @@
 <html lang="zh">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AI猫导航</title>
 
 <style>
-/* ===== 全局 ===== */
+/* ===== 基础 ===== */
 body{
   margin:0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  background:#e6ecf5;
-  display:flex;
+  font-family: -apple-system, BlinkMacSystemFont;
+  background:#e6ebf3;
 }
 
-/* ===== 拟态基础 ===== */
+/* ===== 拟态通用 ===== */
 .neu{
-  background:#e6ecf5;
+  background:#e6ebf3;
   border-radius:20px;
-  box-shadow: 8px 8px 16px #c8d0e0,
-              -8px -8px 16px #ffffff;
+  box-shadow:
+    10px 10px 20px #c5cad3,
+    -10px -10px 20px #ffffff;
 }
 
-.neu-inset{
-  background:#e6ecf5;
-  border-radius:20px;
-  box-shadow: inset 6px 6px 12px #c8d0e0,
-              inset -6px -6px 12px #ffffff;
+/* ===== 布局 ===== */
+.container{
+  display:flex;
 }
 
 /* ===== 左侧栏 ===== */
 .sidebar{
-  width:240px;
+  width:220px;
   padding:20px;
 }
 
 .logo{
-  font-size:22px;
-  font-weight:bold;
-  margin-bottom:30px;
+  font-size:20px;
+  margin-bottom:20px;
 }
 
 .menu{
-  padding:15px;
+  padding:12px;
   margin-bottom:15px;
   cursor:pointer;
-  transition:0.3s;
-}
-.menu:hover{
-  transform:translateY(-2px);
 }
 
-/* ===== 主体 ===== */
+/* ===== 主区域 ===== */
 .main{
   flex:1;
   padding:30px;
@@ -60,181 +52,201 @@ body{
 /* ===== 标题 ===== */
 .title{
   font-size:32px;
-  font-weight:bold;
+  font-weight:600;
   margin-bottom:20px;
 }
 
-/* ===== 搜索 ===== */
+/* ===== 搜索框 ===== */
 .search{
-  padding:15px;
-  margin-bottom:25px;
+  padding:18px;
+  border-radius:30px;
+  margin-bottom:20px;
 }
 
 /* ===== 分类按钮 ===== */
-.categories{
+.tags{
   display:flex;
   gap:15px;
   margin-bottom:25px;
 }
 
-.cat-btn{
-  padding:12px 20px;
-  cursor:pointer;
-  transition:0.2s;
-}
-.cat-btn:hover{
-  transform:translateY(-3px);
+.tag{
+  padding:10px 18px;
+  border-radius:20px;
+  font-size:14px;
 }
 
-/* ===== 卡片 ===== */
+/* ===== 卡片区 ===== */
 .grid{
   display:grid;
   grid-template-columns:repeat(3,1fr);
-  gap:20px;
+  gap:30px;
 }
 
 .card{
-  padding:20px;
+  padding:30px;
   text-align:center;
-  transition:0.3s;
+  transition:.3s;
 }
+
 .card:hover{
   transform:translateY(-5px);
 }
 
-/* ===== 小猫 ===== */
-.cat{
+/* ===== 图标 ===== */
+.card img{
   width:80px;
   margin-bottom:10px;
-  transition:0.3s;
 }
 
-.cat:hover{
-  transform:scale(1.1) rotate(-5deg);
+/* ===== 文字 ===== */
+.name{
+  font-weight:600;
 }
 
-/* ===== 装饰猫 ===== */
-.float-cat{
-  position:fixed;
-  width:100px;
-  animation:float 3s ease-in-out infinite;
+.desc{
+  font-size:13px;
+  color:#666;
 }
 
+/* ===== 时间栏 ===== */
+.footer{
+  margin-top:40px;
+  padding:20px;
+  text-align:center;
+  font-size:18px;
+}
+
+/* ===== 猫贴纸（重点） ===== */
+.cat{
+  position:absolute;
+  width:120px;
+  pointer-events:none;
+}
+
+/* 左下 */
 .cat-left{
   left:20px;
   bottom:20px;
 }
 
+/* 右下 */
 .cat-right{
-  right:30px;
-  bottom:30px;
+  right:20px;
+  bottom:20px;
 }
 
-@keyframes float{
-  0%{transform:translateY(0)}
-  50%{transform:translateY(-10px)}
-  100%{transform:translateY(0)}
+/* 卡片附近小猫 */
+.cat-small{
+  width:80px;
+  top:-20px;
+  right:-10px;
 }
 
-/* ===== 时钟 ===== */
-.clock{
-  margin-top:30px;
-  padding:20px;
-  text-align:center;
-  font-size:24px;
+.card-wrap{
+  position:relative;
 }
-
 </style>
 </head>
 
 <body>
 
-<!-- 左侧 -->
-<div class="sidebar">
-  <div class="logo">🐱 AI猫导航</div>
+<div class="container">
 
-  <div class="menu neu">🏠 首页</div>
-  <div class="menu neu">🤖 AI工具</div>
-  <div class="menu neu">📂 分类</div>
+  <!-- 左侧 -->
+  <div class="sidebar">
+    <div class="logo">🐱 AI猫导航</div>
+
+    <div class="menu neu">🏠 首页</div>
+    <div class="menu neu">🤖 AI工具</div>
+    <div class="menu neu">📁 分类</div>
+  </div>
+
+  <!-- 主内容 -->
+  <div class="main">
+
+    <div class="title">发现最佳 AI 工具</div>
+
+    <div class="search neu">🔍 搜索 AI 工具...</div>
+
+    <div class="tags">
+      <div class="tag neu">✍ 写作</div>
+      <div class="tag neu">🎨 绘图</div>
+      <div class="tag neu">💻 编程</div>
+      <div class="tag neu">⚡ 效率</div>
+    </div>
+
+    <div class="grid">
+
+      <div class="card-wrap">
+        <div class="card neu">
+          <img src="images/cat_wave.png">
+          <div class="name">ChatGPT</div>
+          <div class="desc">AI对话助手</div>
+        </div>
+      </div>
+
+      <div class="card-wrap">
+        <div class="card neu">
+          <img src="images/cat_peek.png">
+          <div class="name">Midjourney</div>
+          <div class="desc">AI绘画工具</div>
+        </div>
+      </div>
+
+      <div class="card-wrap">
+        <div class="card neu">
+          <img src="images/cat_work.png">
+          <div class="name">Notion AI</div>
+          <div class="desc">写作助手</div>
+        </div>
+      </div>
+
+      <div class="card-wrap">
+        <div class="card neu">
+          <img src="images/cat_sleep.png">
+          <div class="name">Canva AI</div>
+          <div class="desc">设计工具</div>
+        </div>
+      </div>
+
+      <div class="card-wrap">
+        <div class="card neu">
+          <img src="images/cat_fight.png">
+          <div class="name">Runway</div>
+          <div class="desc">视频生成</div>
+        </div>
+      </div>
+
+      <div class="card-wrap">
+        <div class="card neu">
+          <img src="images/cat_christmas.png">
+          <div class="name">Copilot</div>
+          <div class="desc">编程助手</div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="footer neu">
+      ⏰ <span id="time"></span>
+    </div>
+
+  </div>
 </div>
 
-<!-- 主体 -->
-<div class="main">
+<!-- ===== 猫贴纸（全局装饰）===== -->
+<img src="images/cat_peek.png" class="cat cat-left">
+<img src="images/cat_christmas.png" class="cat cat-right">
 
-  <div class="title">发现最佳 AI 工具</div>
-
-  <div class="search neu-inset">
-    🔍 搜索 AI 工具...
-  </div>
-
-  <!-- 分类 -->
-  <div class="categories">
-    <div class="cat-btn neu">✍ 写作</div>
-    <div class="cat-btn neu">🎨 绘图</div>
-    <div class="cat-btn neu">💻 编程</div>
-    <div class="cat-btn neu">⚡ 效率</div>
-  </div>
-
-  <!-- 卡片 -->
-  <div class="grid">
-
-    <div class="card neu">
-      <img src="images/cat_wave.png" class="cat">
-      <h3>ChatGPT</h3>
-      <p>AI对话助手</p>
-    </div>
-
-    <div class="card neu">
-      <img src="images/cat_peek.png" class="cat">
-      <h3>Midjourney</h3>
-      <p>AI绘画工具</p>
-    </div>
-
-    <div class="card neu">
-      <img src="images/cat_work.png" class="cat">
-      <h3>Notion AI</h3>
-      <p>写作助手</p>
-    </div>
-
-    <div class="card neu">
-      <img src="images/cat_sleep.png" class="cat">
-      <h3>Canva AI</h3>
-      <p>设计工具</p>
-    </div>
-
-    <div class="card neu">
-      <img src="images/cat_fight.png" class="cat">
-      <h3>Runway</h3>
-      <p>视频生成</p>
-    </div>
-
-    <div class="card neu">
-      <img src="images/cat_christmas.png" class="cat">
-      <h3>Copilot</h3>
-      <p>编程助手</p>
-    </div>
-
-  </div>
-
-  <!-- 时钟 -->
-  <div class="clock neu">
-    ⏰ <span id="clock"></span>
-  </div>
-
-</div>
-
-<!-- 装饰猫 -->
-<img src="images/cat_peek.png" class="float-cat cat-left">
-<img src="images/cat_christmas.png" class="float-cat cat-right">
-
-<!-- JS -->
 <script>
-function updateClock(){
+function updateTime(){
   const now = new Date();
-  document.getElementById('clock').innerText = now.toLocaleTimeString();
+  document.getElementById("time").innerText =
+    now.toLocaleTimeString();
 }
-setInterval(updateClock,1000);
-updateClock();
+setInterval(updateTime,1000);
+updateTime();
 </script>
 
 </body>
